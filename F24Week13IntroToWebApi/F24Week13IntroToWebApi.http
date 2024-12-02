@@ -1,0 +1,6 @@
+@F24Week13IntroToWebApi_HostAddress = http://localhost:5173
+
+GET {{F24Week13IntroToWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
