@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using F24Week13IntroToWebApi.Data;
 
 namespace F24Week13IntroToWebApi
 {
@@ -6,6 +9,8 @@ namespace F24Week13IntroToWebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<BookContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BookContext") ?? throw new InvalidOperationException("Connection string 'BookContext' not found.")));
 
             // Add services to the container.
 
@@ -22,6 +27,9 @@ namespace F24Week13IntroToWebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
 
             app.UseHttpsRedirection();
 
