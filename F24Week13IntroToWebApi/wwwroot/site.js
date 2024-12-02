@@ -43,10 +43,10 @@ function deleteItem(id) {
 }
 
 function displayEditForm(id) {
-    const item = books.find(item => item.bookId === id);
+    const item = books.find(item => item.id === id);
 
     document.getElementById('edit-name').value = item.title;
-    document.getElementById('edit-id').value = item.bookId;
+    document.getElementById('edit-id').value = item.id;
     document.getElementById('edit-price').value = item.price;
     document.getElementById('editForm').style.display = 'block';
 }
@@ -54,7 +54,7 @@ function displayEditForm(id) {
 function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
-        bookId: parseInt(itemId, 10),
+        id: parseInt(itemId, 10),
         title: document.getElementById('edit-name').value.trim(),
         price: document.getElementById('edit-price').value.trim()
     };
@@ -88,11 +88,11 @@ function _displayItems(data) {
     data.forEach(item => {
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayEditForm(${item.bookId})`);
+        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.bookId})`);
+        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
 
         let tr = tBody.insertRow();
 
